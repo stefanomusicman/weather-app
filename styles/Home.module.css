@@ -1,3 +1,4 @@
+/* Main Window */
 .primary {
   width: 100%;
   height: 100vh;
@@ -8,6 +9,7 @@
   background-position: center;
 }
 
+/* Search Box */
 .searchBox {
   display: flex;
   justify-content: center;
@@ -38,4 +40,63 @@
 
 .searchIcon:hover {
   cursor: pointer;
+}
+
+/* Second Container with main weather info */
+.mainWeatherContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50%;
+  font-family: 'Titillium Web';
+}
+
+.mainWeather {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 80%;
+  background: rgba(255,255,255, 0.6);
+  border: none;
+  border-radius: 10px;
+}
+
+.weather {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 75%;
+}
+
+.weatherIcon {
+  height: 4.5em;
+  width: 4.5em;
+}
+
+.temperature {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 25%;
+}
+
+.smallBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.smallBox h3 {
+  margin: auto;
+}
+
+.smallBox h4 {
+  margin: auto;
 }
