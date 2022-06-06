@@ -34,11 +34,11 @@ const Home: NextPage = () => {
           <div className={styles.temperature}>
             <div className={styles.smallBox}>
               <h4>Temperature</h4>
-              {weatherData.main ? <h3>{weatherData.main.temp}°F</h3> : null}
+              {weatherData.main ? <h3>{Math.floor(weatherData.main.temp - 273.15)}°C</h3> : null}
             </div>
             <div className={styles.smallBox}>
               <h4>Feels Like</h4>
-              {weatherData.main ? <h3>{weatherData.main.feels_like}°F</h3> : null}
+              {weatherData.main ? <h3>{Math.floor(weatherData.main.feels_like - 273.15)}°C</h3> : null}
             </div>
           </div>
         </div>
@@ -47,19 +47,19 @@ const Home: NextPage = () => {
         <div className={styles.secondaryWeather}>
           <div className={styles.topLeft}>
             <h4>Humidity</h4>
-            {weatherData.main ? <h3>{weatherData.main.humidity}</h3> : null}
+            {weatherData.main ? <h3>{weatherData.main.humidity}%</h3> : null}
           </div>
           <div className={styles.topRight}>
             <h4>Wind</h4>
-            {weatherData.wind ? <h3>{weatherData.wind.speed}</h3> : null}
+            {weatherData.wind ? <h3>{Math.floor(weatherData.wind.speed * 3.6)} km/hr</h3> : null}
           </div>
           <div className={styles.bottomLeft}>
             <h4>Low</h4>
-            {weatherData.main ? <h3>{weatherData.main.temp_min}</h3> : null}
+            {weatherData.main ? <h3>{Math.floor(weatherData.main.temp_min - 273.15)}°C</h3> : null}
           </div>
           <div className={styles.bottomRight}>
             <h4>High</h4>
-            {weatherData.main ? <h3>{weatherData.main.temp_max}</h3> : null}
+            {weatherData.main ? <h3>{Math.floor(weatherData.main.temp_max - 273.15)}°C</h3> : null}
           </div>
         </div>
       </div>
