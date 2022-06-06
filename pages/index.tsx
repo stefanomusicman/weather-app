@@ -6,22 +6,17 @@ import { BsSunFill } from 'react-icons/bs';
 
 const Home: NextPage = () => {
   
-  const [city, setCity] = useState('');
-  const [weatherData, setWeatherData]: any = useState('');
+  const [city, setCity] = useState<string>('');
+  const [weatherData, setWeatherData] = useState<any>('');
   
   const API_URL: string = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=c4ee778626f5cd6222135068ec2fa634`
   
-  const fetchData = async () => {
+  const fetchData = async (): Promise<void> => {
     let response = await fetch(API_URL);
     let data = await response.json();
     setWeatherData(data);
     setCity('');
   }
-  console.log(weatherData);
-
-  // let weather:string = weatherData.weather[0].main;
-  // let temperature:number = weatherData.main.temp;
-  // let feelsLike: number = weatherData.main.feels_like;
   
   return (
     <div className={styles.primary}>
@@ -39,18 +34,33 @@ const Home: NextPage = () => {
           <div className={styles.temperature}>
             <div className={styles.smallBox}>
               <h4>Temperature</h4>
-              {weatherData.main ? <h3>{weatherData.main.temp}F</h3> : null}
+              {weatherData.main ? <h3>{weatherData.main.temp}°F</h3> : null}
             </div>
             <div className={styles.smallBox}>
               <h4>Feels Like</h4>
-              {weatherData.main ? <h3>{weatherData.main.feels_like}F</h3> : null}
+              {weatherData.main ? <h3>{weatherData.main.feels_like}°F</h3> : null}
             </div>
           </div>
         </div>
       </div>
-      <div className={styles.secondaryWeatherContainer}>
+      <div style={{ visibility: !weatherData ? 'hidden' : 'visible' }} className={styles.secondaryWeatherContainer}>
         <div className={styles.secondaryWeather}>
-
+          <div className={styles.topLeft}>
+            <h4>Humidity</h4>
+            {weatherData.main ? <h3>{weatherData.main.humidity}</h3> : null}
+          </div>
+          <div className={styles.topRight}>
+            <h4>Wind</h4>
+            {weatherData.wind ? <h3>{weatherData.wind.speed}</h3> : null}
+          </div>
+          <div className={styles.bottomLeft}>
+            <h4>Low</h4>
+            {weatherData.main ? <h3>{weatherData.main.temp_min}</h3> : null}
+          </div>
+          <div className={styles.bottomRight}>
+            <h4>High</h4>
+            {weatherData.main ? <h3>{weatherData.main.temp_max}</h3> : null}
+          </div>
         </div>
       </div>
     </div>
