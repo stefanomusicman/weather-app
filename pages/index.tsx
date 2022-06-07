@@ -8,6 +8,7 @@ const Home: NextPage = () => {
   
   const [city, setCity] = useState<string>('');
   const [weatherData, setWeatherData] = useState<any>('');
+  const [isCelsius, setIsCelsius] = useState<boolean>(true);
   
   const API_URL: string = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=c4ee778626f5cd6222135068ec2fa634`
   
@@ -34,11 +35,13 @@ const Home: NextPage = () => {
           <div className={styles.temperature}>
             <div className={styles.smallBox}>
               <h4>Temperature</h4>
-              {weatherData.main ? <h3>{Math.floor(weatherData.main.temp - 273.15)}°C</h3> : null}
+              {isCelsius && weatherData.main ? <h3>{Math.floor(weatherData.main.temp - 273.15)}°C</h3> : null}
+              {!isCelsius && weatherData.main ? <h3>{(Math.floor(weatherData.main.temp - 273.15) * 9/5) + 32}°F</h3> : null}
             </div>
             <div className={styles.smallBox}>
               <h4>Feels Like</h4>
-              {weatherData.main ? <h3>{Math.floor(weatherData.main.feels_like - 273.15)}°C</h3> : null}
+              {isCelsius && weatherData.main ? <h3>{Math.floor(weatherData.main.feels_like - 273.15)}°C</h3> : null}
+              {!isCelsius && weatherData.main ? <h3>{(Math.floor(weatherData.main.feels_like - 273.15) * 9/5) + 32}°F</h3> : null}
             </div>
           </div>
         </div>
@@ -55,13 +58,16 @@ const Home: NextPage = () => {
           </div>
           <div className={styles.bottomLeft}>
             <h4>Low</h4>
-            {weatherData.main ? <h3>{Math.floor(weatherData.main.temp_min - 273.15)}°C</h3> : null}
+            {isCelsius && weatherData.main ? <h3>{Math.floor(weatherData.main.temp_min - 273.15)}°C</h3> : null}
+            {!isCelsius && weatherData.main ? <h3>{(Math.floor(weatherData.main.temp_min - 273.15) * 9/5) + 32}°F</h3> : null}
           </div>
           <div className={styles.bottomRight}>
             <h4>High</h4>
-            {weatherData.main ? <h3>{Math.floor(weatherData.main.temp_max - 273.15)}°C</h3> : null}
+            {isCelsius && weatherData.main ? <h3>{Math.floor(weatherData.main.temp_max - 273.15)}°C</h3> : null}
+            {!isCelsius && weatherData.main ? <h3>{(Math.floor(weatherData.main.temp_max - 273.15) * 9/5) + 32}°F</h3> : null}
           </div>
         </div>
+        <button onClick={() => setIsCelsius(!isCelsius)}>Convert</button>
       </div>
     </div>
   )
