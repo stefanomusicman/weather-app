@@ -173,3 +173,8 @@
   font-family: 'Titillium Web';
   font-size: 1rem;
 }
+
+.convertButton:hover {
+  cursor: pointer;
+  background: rgba(255,255,255, 0.5);
+}

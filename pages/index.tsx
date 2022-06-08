@@ -3,6 +3,9 @@ import type { NextPage } from 'next';
 import styles from '../styles/Home.module.css';
 import { IoSearchCircle } from 'react-icons/io5';
 import { BsSunFill } from 'react-icons/bs';
+import { BsCloudFill } from 'react-icons/bs';
+import { BsCloudRainFill } from 'react-icons/bs';
+import { IoThunderstorm } from 'react-icons/io5'
 
 const Home: NextPage = () => {
   
@@ -18,6 +21,25 @@ const Home: NextPage = () => {
     setWeatherData(data);
     setCity('');
   }
+
+  const iconGenerator = (weather: string) => {
+    let cloud = new RegExp('cloud');
+    let sun = new RegExp('sun'); 
+    let rain = new RegExp('rain');
+    let thunder = new RegExp('thunder');
+
+    if(cloud.test(weather) === true) {
+      return <BsCloudFill className={styles.weatherIcon}/>
+    } else if(sun.test(weather) === true) {
+      return <BsSunFill className={styles.weatherIcon}/>
+    } else if(rain.test(weather) === true) {
+      return <BsCloudRainFill className={styles.weatherIcon}/>
+    } else if(thunder.test(weather) === true) {
+      return <IoThunderstorm className={styles.weatherIcon}/>
+    } else {
+      return <BsSunFill className={styles.weatherIcon}/>
+    }
+  }
   
   return (
     <div className={styles.primary}>
@@ -29,7 +51,7 @@ const Home: NextPage = () => {
         <div className={styles.mainWeather}>
           <div className={styles.weather}>
             {weatherData.name ? <h1>{weatherData.name}</h1> : null}
-            <BsSunFill className={styles.weatherIcon}/>
+            {weatherData.weather ? iconGenerator(weatherData.weather[0].main.toLowerCase()) : null}
             {weatherData.weather ? <h3>{weatherData.weather[0].main}</h3> : null}
           </div>
           <div className={styles.temperature}>
