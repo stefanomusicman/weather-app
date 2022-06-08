@@ -67,7 +67,7 @@ const Home: NextPage = () => {
             {!isCelsius && weatherData.main ? <h3>{(Math.floor(weatherData.main.temp_max - 273.15) * 9/5) + 32}°F</h3> : null}
           </div>
         </div>
-        <button onClick={() => setIsCelsius(!isCelsius)}>Convert</button>
+        <button className={styles.convertButton} onClick={() => setIsCelsius(!isCelsius)}>Convert Temperature</button>
       </div>
     </div>
   )
