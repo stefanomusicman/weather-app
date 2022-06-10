@@ -12,9 +12,4 @@ const nextConfig = withPWA({
   }
 })
 
-module.exports = {
-  nextConfig,
-  env: {
-    API_KEY: "c4ee778626f5cd6222135068ec2fa634"
-  }
-}
+module.exports = nextConfig
