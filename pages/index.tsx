@@ -15,7 +15,7 @@ const Home: NextPage = () => {
   const [isCelsius, setIsCelsius] = useState<boolean>(true);
   const [isValid, setIsValid] = useState<boolean>(true);
   
-  const API_URL: string = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=c4ee778626f5cd6222135068ec2fa634`
+  const API_URL: string = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.API_KEY}`
   
   const fetchData = (): void => {
     fetch(API_URL)
