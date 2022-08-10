@@ -37,11 +37,11 @@ const Home: NextPage = () => {
   }
 
   const iconGenerator = (weather: string): any => {
-    let cloud = new RegExp('cloud');
-    let sun = new RegExp('sun'); 
-    let rain = new RegExp('rain');
-    let mist = new RegExp('mist');
-    let thunder = new RegExp('thunder');
+    let cloud: RegExp = new RegExp('cloud');
+    let sun: RegExp = new RegExp('sun'); 
+    let rain: RegExp = new RegExp('rain');
+    let mist: RegExp = new RegExp('mist');
+    let thunder: RegExp = new RegExp('thunder');
 
     if(cloud.test(weather) === true) {
       return <BsCloudFill className={styles.weatherIcon}/>
