@@ -1,0 +1,74 @@
+.secondaryWeatherContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 35%;
+    font-family: 'Titillium Web';
+  }
+  
+  .topLeft {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-area: TL;
+  }
+  
+  .topRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-area: TR;
+  }
+  
+  .bottomLeft {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-area: BL;
+  }
+  
+  .bottomRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-area: BR;
+  }
+  
+  .secondaryWeather {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+      "TL TL TL TR TR TR"
+      "BL BL BL BR BR BR";
+    width: 80%;
+    height: 80%;
+    background: rgba(255,255,255, 0.6);
+    border: none;
+    border-radius: 10px;
+  }
+  
+  .secondaryWeather * {
+    margin: auto;
+  }
+
+  .convertButton {
+    padding: 15px;
+    margin-top: 25px;
+    border: none;
+    background: rgba(255,255,255, 0.8);
+    border-radius: 25px;
+    font-family: 'Titillium Web';
+    font-size: 1rem;
+  }
+  
+  .convertButton:hover {
+    cursor: pointer;
+    background: rgba(255,255,255, 0.5);
+  }

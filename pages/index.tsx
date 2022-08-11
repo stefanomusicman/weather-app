@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import type { NextPage } from 'next';
 import styles from '../styles/Home.module.css';
 import { IoSearchCircle } from 'react-icons/io5';
@@ -6,13 +6,17 @@ import { BsSunFill } from 'react-icons/bs';
 import { BsCloudFill } from 'react-icons/bs';
 import { BsCloudRainFill } from 'react-icons/bs';
 import { IoThunderstorm } from 'react-icons/io5'
-import ErrorPopup from '../components/ErrorPopup';
+import ErrorPopup from '../components/ErrorPopup/ErrorPopup';
+import SecondaryWeather from '../components/SecondaryWeather/SecondaryWeather';
+import { Context } from '../context/context';
 
 const Home: NextPage = () => {
+
+  const {isCelsius} = useContext(Context);
   
   const [city, setCity] = useState<string>('');
   const [weatherData, setWeatherData] = useState<any>('');
-  const [isCelsius, setIsCelsius] = useState<boolean>(true);
+  // const [isCelsius, setIsCelsius] = useState<boolean>(true);
   const [isValid, setIsValid] = useState<boolean>(true);
   
   const API_URL: string = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=c4ee778626f5cd6222135068ec2fa634`
@@ -90,7 +94,7 @@ const Home: NextPage = () => {
             </div>
           </div>
         </div>
-        <div style={{ visibility: !weatherData ? 'hidden' : 'visible' }} className={styles.secondaryWeatherContainer}>
+        {/* <div style={{ visibility: !weatherData ? 'hidden' : 'visible' }} className={styles.secondaryWeatherContainer}>
           <div className={styles.secondaryWeather}>
             <div className={styles.topLeft}>
               <h4>Humidity</h4>
@@ -112,7 +116,8 @@ const Home: NextPage = () => {
             </div>
           </div>
           <button className={styles.convertButton} onClick={() => setIsCelsius(!isCelsius)}>Convert Temperature</button>
-        </div>
+        </div> */}
+      <SecondaryWeather weatherData={weatherData ? weatherData : null}/>
       </div>}
     </React.Fragment>
   )
