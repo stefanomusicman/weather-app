@@ -3,11 +3,13 @@ import React, { createContext, ReactNode, useState } from "react";
 type weatherContextType = {
     isCelsius: boolean,
     isNotCelsius: () => void,
+    determineTemp: (temp: any) => JSX.Element,
 }
 
 const weatherContextDefaultValues: weatherContextType = {
     isCelsius: true,
-    isNotCelsius: () => {}
+    isNotCelsius: () => {},
+    determineTemp: (temp: any) => <p>...</p>,
 }
 
 export const Context = createContext<weatherContextType>(weatherContextDefaultValues);
@@ -25,9 +27,18 @@ const ContextProvider = ({ children }: Props) => {
         setIsCelsius(!isCelsius)
     }
 
+    const determineTemp = (temp: any): JSX.Element => {
+        if(isCelsius) {
+            return <h3>{Math.floor(temp - 273.15)}°C</h3>
+        } else {
+            return <h3>{(Math.floor(temp - 273.15) * 9/5) + 32}°F</h3>
+        }
+    }
+
     const value = {
         isCelsius,
-        isNotCelsius
+        isNotCelsius,
+        determineTemp,
     }
 
     return(

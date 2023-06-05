@@ -9,7 +9,7 @@ import { IoThunderstorm } from 'react-icons/io5'
 
 const PrimaryWeather:React.FC<{weatherData: any}> = ({weatherData}) => {
 
-    const {isCelsius} = useContext(Context);
+    const { determineTemp } = useContext(Context);
 
     const iconGenerator = (weather: string): any => {
         let cloud: RegExp = new RegExp('cloud');
@@ -42,13 +42,11 @@ const PrimaryWeather:React.FC<{weatherData: any}> = ({weatherData}) => {
             <div className={styles.temperature}>
               <div className={styles.smallBox}>
                 <h4>Temperature</h4>
-                {isCelsius && <h3>{Math.floor(weatherData?.main.temp - 273.15)}°C</h3>}
-                {!isCelsius && <h3>{(Math.floor(weatherData?.main.temp - 273.15) * 9/5) + 32}°F</h3>}
+                {determineTemp(weatherData?.main.temp)}
               </div>
               <div className={styles.smallBox}>
                 <h4>Feels Like</h4>
-                {isCelsius && <h3>{Math.floor(weatherData?.main.feels_like - 273.15)}°C</h3>}
-                {!isCelsius && <h3>{(Math.floor(weatherData?.main.feels_like - 273.15) * 9/5) + 32}°F</h3>}
+                {determineTemp(weatherData?.main.temp)}
               </div>
             </div>
           </div>

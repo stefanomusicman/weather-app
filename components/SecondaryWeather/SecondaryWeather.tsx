@@ -4,7 +4,7 @@ import styles from './SecondaryWeather.module.css';
 
 const SecondaryWeather:React.FC<{weatherData: any}> = ({weatherData}) => {
 
-    const {isCelsius, isNotCelsius} = useContext(Context);
+    const { isNotCelsius, determineTemp } = useContext(Context);
 
     return(
         <div style={{ visibility: !weatherData ? 'hidden' : 'visible' }} className={styles.secondaryWeatherContainer}>
@@ -19,13 +19,11 @@ const SecondaryWeather:React.FC<{weatherData: any}> = ({weatherData}) => {
             </div>
             <div className={styles.bottomLeft}>
               <h4>Low</h4>
-              {isCelsius && <h3>{Math.floor(weatherData?.main.temp_min - 273.15)}°C</h3>}
-              {!isCelsius && <h3>{(Math.floor(weatherData?.main.temp_min - 273.15) * 9/5) + 32}°F</h3>}
+              {determineTemp(weatherData?.main.temp_min)}
             </div>
             <div className={styles.bottomRight}>
               <h4>High</h4>
-              {isCelsius && <h3>{Math.floor(weatherData?.main.temp_max - 273.15)}°C</h3>}
-              {!isCelsius && <h3>{(Math.floor(weatherData?.main.temp_max - 273.15) * 9/5) + 32}°F</h3>}
+              {determineTemp(weatherData?.main.temp_max)}
             </div>
           </div>
           <button className={styles.convertButton} onClick={() => isNotCelsius()}>Convert Temperature</button>
